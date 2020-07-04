@@ -22,7 +22,7 @@
             app:expandedTitleMarginStart="72dp"
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-            
+
             <ImageView
                 android:id="@+id/header"
                 android:layout_width="match_parent"
