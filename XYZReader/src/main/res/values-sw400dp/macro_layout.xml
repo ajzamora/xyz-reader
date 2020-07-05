@@ -1,0 +1,4 @@
+<resources>
+    <!-- detail -->
+    <bool name="detail_is_adjustable_view_bounds">true</bool>
+</resources>

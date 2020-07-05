@@ -23,6 +23,7 @@
                     android:id="@+id/photo"
                     android:scaleType="centerCrop"
                     android:minHeight="@dimen/detail_photo_height"
+                    android:adjustViewBounds="@bool/detail_is_adjustable_view_bounds"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <View
