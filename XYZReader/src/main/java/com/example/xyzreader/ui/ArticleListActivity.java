@@ -12,6 +12,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -20,6 +21,8 @@ import com.example.xyzreader.R;
 import com.example.xyzreader.adapters.ArticleAdapter;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.UpdaterService;
+import com.example.xyzreader.utils.NetworkUtils;
+import com.google.android.material.snackbar.Snackbar;
 
 /**
  * An activity representing a list of Articles. This activity has different presentations for
@@ -32,6 +35,7 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     private static final String TAG = ArticleListActivity.class.toString();
     private Toolbar mToolbar;
+    private CoordinatorLayout mArticleCoordinatorLayout;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
 
@@ -40,6 +44,7 @@ public class ArticleListActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
 
+        mArticleCoordinatorLayout = findViewById(R.id.article_coordinator);
         mToolbar = findViewById(R.id.toolbar);
 
 
@@ -55,9 +60,25 @@ public class ArticleListActivity extends AppCompatActivity implements
     }
 
     private void refresh() {
-        startService(new Intent(this, UpdaterService.class));
+        if (NetworkUtils.isOnline(this)) {
+            startService(new Intent(this, UpdaterService.class));
+            return;
+        }
+        showSnackBar();
     }
 
+    private void showSnackBar() {
+        final Snackbar snackbar = Snackbar.make(mArticleCoordinatorLayout,"No Internet Connection... Try again later.",Snackbar.LENGTH_SHORT);
+
+        snackbar.setAction("DISMISS", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                snackbar.dismiss();
+            }
+        });
+
+        snackbar.show();
+    }
     @Override
     protected void onStart() {
         super.onStart();
