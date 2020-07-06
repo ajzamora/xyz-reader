@@ -68,9 +68,9 @@ public class ArticleListActivity extends AppCompatActivity implements
     }
 
     private void showSnackBar() {
-        final Snackbar snackbar = Snackbar.make(mArticleCoordinatorLayout,"No Internet Connection... Try again later.",Snackbar.LENGTH_SHORT);
+        final Snackbar snackbar = Snackbar.make(mArticleCoordinatorLayout, getText(R.string.no_internet_connection), Snackbar.LENGTH_SHORT);
 
-        snackbar.setAction("DISMISS", new View.OnClickListener() {
+        snackbar.setAction(getText(R.string.snackbar_action_dismiss), new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 snackbar.dismiss();

@@ -9,4 +9,6 @@
 
     <string name="up">Up</string>
 
+    <string name="snackbar_action_dismiss">DISMISS</string>
+    <string name="no_internet_connection">No Internet Connection… Try again later.</string>
 </resources>
